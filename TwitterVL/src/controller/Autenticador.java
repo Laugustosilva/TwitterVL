@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.swing.JOptionPane;
 
 import model.Pessoa;
@@ -25,7 +26,7 @@ public class Autenticador extends HttpServlet {
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		
-		ServletContext context = getServletContext();
+		HttpSession sessao = request.getSession();		
 		String login = request.getParameter("username");
 		String senha = request.getParameter("password");
 		
@@ -38,15 +39,15 @@ public class Autenticador extends HttpServlet {
 		if(senha.equals("123") && login.equals("veve")){
 			p.setNome("Verônica");
 			request.getSession().setAttribute("usuario", usuario);
-			context.setAttribute("user", usuario);
-			context.setAttribute("nome", p);
+			sessao.setAttribute("user", usuario);
+			sessao.setAttribute("nome", p);
 			response.sendRedirect(request.getContextPath() + "/perfil.jsp");
 		}
 		else if(senha.equals("321") && login.equals("lulu")){
 			p.setNome("Luis Augusto");
 			request.getSession().setAttribute("usuario", usuario);
-			context.setAttribute("user", usuario);
-			context.setAttribute("nome", p);
+			sessao.setAttribute("user", usuario);
+			sessao.setAttribute("nome", p);
 			response.sendRedirect(request.getContextPath() + "/perfil.jsp");
 			
 		}else{

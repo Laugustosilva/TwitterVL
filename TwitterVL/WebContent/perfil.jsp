@@ -6,12 +6,17 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="twitter:widgets:theme" content="light">
+<meta name="twitter:widgets:link-color" content="#55acee">
+<meta name="twitter:widgets:border-color" content="#55acee">
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/style.css" rel="stylesheet">
 <script src="js/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/auxfunctions.js"></script>
+<script src="js/scriptVL.js"></script>
 <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
+<link rel="canonical" href="https://dev.twitter.com/web/tweet-button">
 <title>Login</title>
 </head>
 <body>
@@ -42,8 +47,8 @@
 			<div id="span4Perfil">
 				<br />
 				<%
-					Usuario u = (Usuario) getServletContext().getAttribute("user");
-			    	Pessoa p = (Pessoa) getServletContext().getAttribute("nome");
+					Usuario u = (Usuario) session.getAttribute("user");
+			    	Pessoa p = (Pessoa) session.getAttribute("nome");
 				%>
 				<%
 					if(u == null){
@@ -65,16 +70,16 @@
 					<h2>Olá</h2>
 				<%}%>
 				<br />
-				<form action="twitter" method="post" id="formTwitter">
-				<h2 align="left">Twitter</h2>
-					<textarea rows=3 cols=4 onKeyPress="return taLimit(this)" onKeyUp="return taCount(this,'myCounter')" name="twit" class="form-control" placeholder="Digite sua mensagem aqui"></textarea>
-					<div align="right">
-						<font color="red" id=myCounter>300</font>
-						<button type="submit" class="btn btn-default" >Twittar</button>
+				<%if(u.getLogin().equals("veve")){ %>
+					<div id="formTwitter">
+					<a class="twitter-timeline" href="https://twitter.com/search?q=%40Veronicka_Moon" data-widget-id="648212040432119809">Tweets sobre @Veronicka_Moon</a>				
 					</div>
-				</form>
+				<%}else{ %>
+					<div id="formTwitter">
+					<a class="twitter-timeline" href="https://twitter.com/search?q=%40Laugustosilva" data-widget-id="648482696855949312">Tweets sobre @Laugustosilva</a>
+					</div>
+				<%} %>
 			</div>
-				
 			</div>
 			<div class="col-md-8" align="center">
 			<div id="span8Perfil">
@@ -93,10 +98,18 @@
 						<font color="red" id=myCounter>300</font>
 						<button type="submit" class="btn btn-default" >Postar</button>
 					</div>
-				</form>			
+				</form>
+				
+					
 			</div>
 			</div>
 		</div>
 	</div>
+    
+	<div class="row" id="rodape" align="center">
+        <div class="col-md-12">
+        <font color="white">Copyright 2015 @ Verônica e Luís</font>
+        </div>
+    </div>
 </body>
 </html>
