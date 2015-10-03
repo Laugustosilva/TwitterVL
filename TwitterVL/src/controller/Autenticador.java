@@ -1,16 +1,12 @@
 package controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.swing.JOptionPane;
 
 import model.Pessoa;
 import model.Usuario;
@@ -33,7 +29,10 @@ public class Autenticador extends HttpServlet {
 		/**
 		 * DataBase
 		 */		
-		Usuario usuario = new Usuario(login, senha);
+		Usuario usuario = new Usuario();
+		usuario.setLogin(login);
+		usuario.setSenha(senha);
+		
 		Pessoa p = new Pessoa();
 		
 		if(senha.equals("123") && login.equals("veve")){

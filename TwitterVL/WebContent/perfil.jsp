@@ -1,3 +1,4 @@
+<%@page import="java.util.*"%>
 <%@page import="model.Usuario"%>
 <%@page import="model.Pessoa"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -72,18 +73,19 @@
 				<br />
 				<%if(u.getLogin().equals("veve")){ %>
 					<div id="formTwitter">
-					<a class="twitter-timeline" href="https://twitter.com/search?q=%40Veronicka_Moon" data-widget-id="648212040432119809">Tweets sobre @Veronicka_Moon</a>				
+					<a class="twitter-timeline" href="https://twitter.com/search?q=%40Veronicka_Moon" data-widget-id="648212040432119809">Tweets sobre @Veronicka_Moon</a>
+								
 					</div>
 				<%}else{ %>
 					<div id="formTwitter">
-					<a class="twitter-timeline" href="https://twitter.com/search?q=%40Laugustosilva" data-widget-id="648482696855949312">Tweets sobre @Laugustosilva</a>
+					<a class="twitter-timeline" href="https://twitter.com/Laugustosilva" data-widget-id="650302705274081280">Tweets de @Laugustosilva</a>
 					</div>
 				<%} %>
 			</div>
 			</div>
 			<div class="col-md-8" align="center">
 			<div id="span8Perfil">
-				<form role="form" action="#" method="post" id="campoMensagem">
+				<form role="form" action="mensagens" method="post" id="campoMensagem">
 					<div class="input-group">
 						<span id="basic-addon1" class="input-group-addon">
 							<%if(u.getLogin().equals("veve")) {%>
@@ -99,8 +101,31 @@
 						<button type="submit" class="btn btn-default" >Postar</button>
 					</div>
 				</form>
-				
-					
+				<div id="mensagem" >
+					<%if (u.getLogin().equals("veve")){ %>
+						<%ArrayList<String> msg = (ArrayList<String>) session.getAttribute("msgs");%>
+						<%if(msg!=null){%>
+							<%for(String s: msg){%>
+								<div class="input-group">
+									<span id="basic-addon1" class="input-group-addon"><img src="img/ve.jpg" alt="ve" class="img-rounded" style="width: 70px; height: 70px;"></span>
+									<textarea rows=4 cols=10 class="form-control"><%=s%></textarea>
+								</div>
+								<br />
+							<%} %>
+						<%} %>
+					<%}else{ %>
+						<%ArrayList<String> msg2 = (ArrayList<String>) session.getAttribute("msgs2");%>
+						<%if(msg2!=null){%>
+							<%for(String s: msg2){%>
+							<div class="input-group">
+								<span id="basic-addon1" class="input-group-addon"><img src="img/luis.jpg" alt="ve" class="img-rounded" style="width: 70px; height: 70px;"></span>
+								<textarea rows=4 cols=10 class="form-control"><%=s%></textarea>
+							</div>
+							<br />
+							<%} %>
+						<%} %>
+					<%}%>
+				</div>					
 			</div>
 			</div>
 		</div>

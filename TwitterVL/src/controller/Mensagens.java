@@ -1,32 +1,47 @@
 package controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-/**
- * Servlet implementation class Mensagens
- */
+import model.Usuario;
+
+
 @WebServlet("/mensagens")
 public class Mensagens extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
-    public Mensagens() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+	private ArrayList<String> msgs;
+	private ArrayList<String> msgs2;
+	private Usuario user;
+	
+	public Mensagens() {
+		super();
+		msgs = new ArrayList<String>();
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		
+		HttpSession sessao = request.getSession(); 
+		String msg = request.getParameter("mensagem");
+		
+		user = (Usuario) sessao.getAttribute("user");
+
+		if(user.getLogin().equals("veve")){		
+			user.addMensagens(msg);
+			sessao.setAttribute("msgs", user.getMensagens());
+		}
+		else{
+			user.addMensagens(msg);
+			sessao.setAttribute("msgs2", user.getMensagens());
+		}
+		
+		response.sendRedirect(request.getContextPath() + "/perfil.jsp");
 	}
 
 }
