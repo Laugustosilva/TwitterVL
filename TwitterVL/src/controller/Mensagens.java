@@ -17,7 +17,7 @@ import model.Usuario;
 public class Mensagens extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private ArrayList<String> msgs;
-	private ArrayList<String> msgs2;
+	//private ArrayList<String> msgs2;
 	private Usuario user;
 	
 	public Mensagens() {
@@ -31,8 +31,11 @@ public class Mensagens extends HttpServlet {
 		String msg = request.getParameter("mensagem");
 		
 		user = (Usuario) sessao.getAttribute("user");
-
-		if(user.getLogin().equals("veve")){		
+		
+		user.addMensagens(msg);
+		sessao.setAttribute("msgs", user.getMensagens());
+		
+		/*if(user.getLogin().equals("veve")){		
 			user.addMensagens(msg);
 			sessao.setAttribute("msgs", user.getMensagens());
 		}
@@ -40,7 +43,7 @@ public class Mensagens extends HttpServlet {
 			user.addMensagens(msg);
 			sessao.setAttribute("msgs2", user.getMensagens());
 		}
-		
+		*/
 		response.sendRedirect(request.getContextPath() + "/perfil.jsp");
 	}
 

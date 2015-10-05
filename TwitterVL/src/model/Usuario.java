@@ -5,14 +5,30 @@ import java.util.ArrayList;
 import controller.Mensagens;
 
 public class Usuario {
+	private String nome;
 	private String login;
 	private String senha;
+	private String foto;
 	private ArrayList<String> mensagens;
 
 	public Usuario() {
 		setMensagens(new ArrayList<String>());
 	}
+	
+	public String getFoto() {
+		return foto;
+	}
 
+	public void setFoto(String foto) {
+		this.foto = foto;
+	}
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
 	public String getLogin() {
 		return login;
 	}
