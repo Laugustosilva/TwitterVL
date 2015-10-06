@@ -22,18 +22,25 @@ public class Buscar extends HttpServlet {
     }
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
 		
 		HttpSession sessao = request.getSession();
 		String busca = request.getParameter("busca");
 		
-		for(Usuario u: Autenticador.listaDeUsuarios){
-			if(u.getNome().contains(busca)){
-				buscaU.add(u);
+		if(busca != null){
+			
+			for(Usuario u: Autenticador.listaDeUsuarios){
+				if(u.getNome().contains(busca)){
+					buscaU.add(u);
+				}
 			}
+			
+			sessao.setAttribute("listaBusca", buscaU);
+			response.sendRedirect(request.getContextPath() + "/listaBusca.jsp");
+
+		}else{
+			response.sendRedirect(request.getContextPath() + "/perfil.jsp");
 		}
 		
-		sessao.setAttribute("buscaLista", buscaU);
 	}
 
 }

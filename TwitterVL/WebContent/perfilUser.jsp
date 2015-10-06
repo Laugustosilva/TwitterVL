@@ -58,6 +58,7 @@
 					</div>
 				</form>
 				<%
+					String user = request.getParameter("use");
 					Usuario u = (Usuario) session.getAttribute("user");
 				%>
 				<%
@@ -69,7 +70,7 @@
 				if (u != null) {%>
 					<h2>Olá <%=u.getNome()%> !</h2>
 						<img src=<%=u.getFoto()%> alt="ve" class="img-circle" style="width: 200px; height: 200px;">
-						<h4><%="@"+u.getLogin()%></h4>
+						<h4><%="@"+user%></h4>
 				<%}%>
 				<br />
 				<%if(u.getLogin().equals("veve")){ %>

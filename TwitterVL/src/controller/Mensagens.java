@@ -18,22 +18,41 @@ public class Mensagens extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private ArrayList<String> msgs;
 	//private ArrayList<String> msgs2;
+	private ArrayList<String> tags;
 	private Usuario user;
+	private int cont = 0 ;
 	
 	public Mensagens() {
 		super();
 		msgs = new ArrayList<String>();
+		tags = new ArrayList<String>();
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		HttpSession sessao = request.getSession(); 
+		HttpSession sessao = request.getSession();
+		ServletContext context = getServletContext();
 		String msg = request.getParameter("mensagem");
 		
 		user = (Usuario) sessao.getAttribute("user");
 		
 		user.addMensagens(msg);
 		sessao.setAttribute("msgs", user.getMensagens());
+		
+		if(msg.contains("#")){
+			String m[] = msg.split(" ");
+			if(cont==7){
+				tags.remove(0);
+			}
+			for(String i: m){
+				if(i.startsWith("#")){
+					System.out.println(i);
+					tags.add(i);
+					context.setAttribute("tags", tags);
+					cont++;
+				}
+			}
+		}
 		
 		/*if(user.getLogin().equals("veve")){		
 			user.addMensagens(msg);

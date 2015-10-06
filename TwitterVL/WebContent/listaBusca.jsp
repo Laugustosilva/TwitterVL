@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+<%@page import="model.Usuario"%>
+<%@page import="java.util.*"%>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -35,13 +37,39 @@
 		<div class="col-md-4" align="center"></div>
 		<div class="col-md-4">
 			<div align="center">
-				<div id="login">
-				<% %>
+				<div id="busca" align="center">
+				<h2>Usuários Encontrados</h2>
+				<br/>
+		    		<table class="table table-hover">
+		    			<thead>
+		    				<tr>
+				          		<th>Nome</th>
+				          		<th>Login</th>
+				        	</tr>
+				      	</thead>
+				      	<tbody>
+							<% ArrayList<Usuario> listaBusca = (ArrayList<Usuario>) session.getAttribute("listaBusca"); 
+			    		
+			    			for(Usuario u: listaBusca){%>
+			    			<tr>
+			    				<td><%=u.getNome() %></td>
+			    				<td><a href="perfilUser.jsp"><%=u.getLogin() %></a></td>
+			    			</tr>
+			    			<%}%>
+		    			</tbody>
+					</table>
 				</div>
 			</div>
 		</div>
 		<div class="col-md-4" align="center"></div>
 	</div>
 </div>
+
+	<div class="row" id="rodape" align="center">
+        <div class="col-md-12">
+        <font color="white">Copyright 2015 @ Verônica e Luís</font>
+        </div>
+    </div>
+    
 </body>
 </html>

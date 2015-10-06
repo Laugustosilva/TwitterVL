@@ -5,10 +5,6 @@
 #corSpan8{
 	margin-top: 30px;
 }
-#buscar{
-	padding-left: 20px;
-	padding-right: 20px;
-}
 
 #rodape{
 	margin: auto;
@@ -21,6 +17,14 @@
 #login{
 	background-color: #fff;
 	width: 420px;
+	padding: 20px;
+	margin-top: 170px;
+	border-radius: 10px;
+	-webkit-border-radius: 10px;
+}
+
+#busca{
+	background-color: #fff;
 	padding: 20px;
 	margin-top: 170px;
 	border-radius: 10px;
@@ -43,12 +47,21 @@
 	padding-top: 10px;
 }
 
-#span8Perfil{
+#span6Perfil{
 	margin-top: 60px;
 	background-color: white;
 	border-radius: 10px;
 	-webkit-border-radius: 10px;
 	padding-bottom: 10px;
+}
+
+#span2Perfil{
+	margin-top: 60px;
+	background-color: white;
+	border-radius: 10px;
+	-webkit-border-radius: 10px;
+	padding-bottom: 10px;
+	
 }
 
 #span4Perfil{
