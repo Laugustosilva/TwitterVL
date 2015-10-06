@@ -10,6 +10,7 @@ public class Usuario {
 	private String senha;
 	private String foto;
 	private ArrayList<String> mensagens;
+	private ArrayList<Usuario> seguidos; 
 
 	public Usuario() {
 		setMensagens(new ArrayList<String>());
@@ -55,6 +56,13 @@ public class Usuario {
 
 	public void setMensagens(ArrayList<String> mensagens) {
 		this.mensagens = mensagens;
+	}
+	public ArrayList<Usuario> getSeguidos() {
+		return seguidos;
+	}
+
+	public void setSeguidos(ArrayList<Usuario> seguidos) {
+		this.seguidos = seguidos;
 	}
 
 }

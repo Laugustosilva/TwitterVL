@@ -13,7 +13,7 @@ import model.Usuario;
 @WebServlet("/login")
 public class Autenticador extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private ArrayList<Usuario> listaDeUsuarios = new ArrayList<>();
+	public static ArrayList<Usuario> listaDeUsuarios = new ArrayList<>();
 	
 	public Autenticador() {
 		super();
@@ -24,6 +24,21 @@ public class Autenticador extends HttpServlet {
 		HttpSession sessao = request.getSession();		
 		String login = request.getParameter("username");
 		String senha = request.getParameter("password");
+		
+		String criar = request.getParameter("criar");
+		
+		if(criar!=null){
+			String n = request.getParameter("novonome");
+			String l = request.getParameter("novousername");
+			String s = request.getParameter("novapassword");
+			
+			Usuario user = new Usuario();
+			user.setLogin(l);
+			user.setSenha(s);
+			user.setNome(n);
+			user.setFoto("img/user.png");
+			listaDeUsuarios.add(user);
+		}
 		
 		Usuario temp = new Usuario();
 		
@@ -57,6 +72,6 @@ public class Autenticador extends HttpServlet {
 		else {
 			response.sendRedirect("index.html");
 		}
-		
+		System.out.println(listaDeUsuarios.size());
 	}
 }
