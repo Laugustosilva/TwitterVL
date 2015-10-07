@@ -1,5 +1,5 @@
 <%@page import="java.util.*"%>
-<%@page import="model.Usuario"%>
+<%@page import="model.*"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -31,7 +31,7 @@
         			<span class="icon-bar"></span>
         			<span class="icon-bar"></span>
       			</button>
-      			<a class="navbar-brand" href="#">TwitterVL</a>
+      			<a class="navbar-brand">TwitterVL</a>
     		</div>
        	  	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       			<ul class="nav navbar-nav">
@@ -87,13 +87,12 @@
 					</div>
 				</form>
 				<div id="mensagem" >					
-					<%ArrayList<String> msg = (ArrayList<String>) session.getAttribute("msgs");
-					%>
-					<%if(msg!=null){%>
-						<%for(String s: msg){%>
+					<%ArrayList<Msg> mg = (ArrayList<Msg>) session.getAttribute("msgs");%>
+					<%if(mg!=null){%>
+						<%for(Msg s: mg){%>
 							<div class="input-group">
-								<span id="basic-addon1" class="input-group-addon"><img src=<%=u.getFoto()%> alt="ve" class="img-rounded" style="width: 70px; height: 70px;"></span>
-								<textarea disabled="disabled" rows=4 cols=10 class="form-control"><%=s%></textarea>
+								<span id="basic-addon1" class="input-group-addon"><img src=<%=s.getFoto()%> alt="ve" class="img-rounded" style="width: 70px; height: 70px;"></span>
+								<textarea disabled="disabled" rows=4 cols=10 class="form-control"><%=s.getMsg()%></textarea>
 							</div>
 							<br />
 						<%} %>
@@ -102,16 +101,16 @@
 			</div>
 			</div>
 			<div class="col-md-2" align="center">
-				<div id="span6Perfil">
+				<div id="span2Perfil">
 					<br />
 					<form action="buscar" method="post" class="form-inline">
-						<div class="input-group" align="center">
+						<div class="input-group" align="center" id="buscar">
 							<span id="basic-addon1" class="input-group-addon">
 								<i class="fa fa-search"></i>
 							</span>
-							<input type="text" name="busca" placeholder="Buscar Usuário" aria-describedby="basic-addon1" class="form-control" />
+							<input type="text" name="busca" placeholder="Buscar Usuário" aria-describedby="basic-addon1" class="form-control"/>
 						</div>
-							<button type="submit" class="btn btn-default">Buscar</button>
+							<div align="right"><button type="submit" class="btn btn-default">Buscar</button></div>
 					</form>
 					<br />
 					<h3>Tópicos</h3>
@@ -119,7 +118,7 @@
 					<%ArrayList<String> tags = (ArrayList<String>) getServletContext().getAttribute("tags"); 
 					if(tags != null){
 						for(String t: tags){%>
-								<h4 align="left" style="padding-left:30px;"><%=t %></h4>
+								<h4 align="left"><%=t %></h4>
 							<%}
 					}else{%>
 						<h3>Não há tópicos</h3>
@@ -130,6 +129,12 @@
 	</div>
     
 	<div class="row" id="rodape" align="center">
+	<form action="logout" method="post">
+		<div align="right">
+			<button type="submit" class="btn btn-default" ><a href="index.html">Sair</button>
+			<% Usuario none = (Usuario) session.getAttribute(null);%>
+		</div>
+	</form>
         <div class="col-md-12">
         <font color="white">Copyright 2015 @ Verônica e Luís</font>
         </div>

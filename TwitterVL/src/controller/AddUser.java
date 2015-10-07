@@ -34,6 +34,5 @@ public class AddUser extends HttpServlet {
 						
 		response.sendRedirect("index.html");
 
-		System.out.println(Autenticador.listaDeUsuarios.size());
 	}
 }

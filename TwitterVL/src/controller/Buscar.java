@@ -25,22 +25,22 @@ public class Buscar extends HttpServlet {
 		
 		HttpSession sessao = request.getSession();
 		String busca = request.getParameter("busca");
-		
-		if(busca != null){
-			
-			for(Usuario u: Autenticador.listaDeUsuarios){
-				if(u.getNome().contains(busca)){
+	
+		if(buscaU.size()>0){
+			buscaU.clear();			
+		}
+		if(busca != ""){
+			for(Usuario u : Autenticador.listaDeUsuarios){
+				if(u.getLogin().equals(busca) || u.getNome().equals(busca)){
 					buscaU.add(u);
 				}
 			}
-			
 			sessao.setAttribute("listaBusca", buscaU);
 			response.sendRedirect(request.getContextPath() + "/listaBusca.jsp");
 
 		}else{
 			response.sendRedirect(request.getContextPath() + "/perfil.jsp");
 		}
-		
 	}
 
 }

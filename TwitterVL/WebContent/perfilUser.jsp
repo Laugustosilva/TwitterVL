@@ -31,7 +31,7 @@
         			<span class="icon-bar"></span>
         			<span class="icon-bar"></span>
       			</button>
-      			<a class="navbar-brand" href="#">TwitterVL</a>
+      			<a class="navbar-brand" href="perfil.jsp">TwitterVL</a>
     		</div>
        	  	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       			<ul class="nav navbar-nav">
@@ -58,8 +58,8 @@
 					</div>
 				</form>
 				<%
-					String user = request.getParameter("use");
-					Usuario u = (Usuario) session.getAttribute("user");
+					
+					Usuario u = (Usuario) session.getAttribute("user2");
 				%>
 				<%
 					if(u == null){
@@ -70,7 +70,7 @@
 				if (u != null) {%>
 					<h2>Olá <%=u.getNome()%> !</h2>
 						<img src=<%=u.getFoto()%> alt="ve" class="img-circle" style="width: 200px; height: 200px;">
-						<h4><%="@"+user%></h4>
+						<h4><%="@"+u.getNome()%></h4>
 				<%}%>
 				<br />
 				<%if(u.getLogin().equals("veve")){ %>
@@ -99,8 +99,7 @@
 					</div>
 				</form>
 				<div id="mensagem" >					
-					<%ArrayList<String> msg = (ArrayList<String>) session.getAttribute("msgs");
-					%>
+					<%ArrayList<String> msg = (ArrayList<String>) session.getAttribute("msgs");%>
 					<%if(msg!=null){%>
 						<%for(String s: msg){%>
 							<div class="input-group">

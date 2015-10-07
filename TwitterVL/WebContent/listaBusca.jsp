@@ -54,6 +54,8 @@
 			    			<tr>
 			    				<td><%=u.getNome() %></td>
 			    				<td><a href="perfilUser.jsp"><%=u.getLogin() %></a></td>
+			    				<% HttpSession sessao = request.getSession();%>
+								<% sessao.setAttribute("user2", u);%>
 			    			</tr>
 			    			<%}%>
 		    			</tbody>
